@@ -1,6 +1,9 @@
 
 # sea-me-hackathon-2023
 
+ 현재 GitHub의 권장 파일 size를 초과하는 파일이 있어, 모든 파일이 업로드되지 못했습니다. (Cluster/src/qrc_qml.cpp가 업로드 불가)
+ <br/>  따라서 결과물은 추후에 업로드할 발표 영상을 확인해주시면 감사하겠습니다.
+
 ## Contents
 - [Step 1 : Install Ubuntu image on VMware](#Step-1-VMwareWorkstation17)
 - [Step 2 : Windows settings for VMware WIFI](#windows-settings-for-VMware-WIFI)
