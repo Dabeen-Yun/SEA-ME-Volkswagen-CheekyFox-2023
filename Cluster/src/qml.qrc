@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>image/back.png</file>
+        <file>image/car1.png</file>
+        <file>image/dial.png</file>
+        <file>image/rpm.png</file>
+        <file>image/star.png</file>
+        <file>image/volk.png</file>
+        <file>image/warning.png</file>
+        <file>image/rpm2.png</file>
+        <file>image/oillist.png</file>
+        <file>image/redoil.png</file>
+        <file>human.html</file>
+        <file>image/background.png</file>
+        <file>image/background2.png</file>
+        <file>image/gas.png</file>
+        <file>image/rpmui.png</file>
+        <file>image/speedui.png</file>
+        <file>image/ui.png</file>
+        <file>image/oillist2.png</file>
+    </qresource>
+</RCC>

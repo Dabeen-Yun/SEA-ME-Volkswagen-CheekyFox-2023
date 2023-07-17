@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCorVW_wxJxGh8gePxsARdJoQbwCymU0Dw&libraries=places&callback=initMap" async defer></script>
+  </head>
+  <body>
+    <div id="map" style="height: 100vh; width: 100%;"></div>
+
+    <script>
+      var map;
+      var directionsService, directionsRenderer;
+      var chosenStation;
+      const gasInfo = [
+        {price: "1,200원", time: "12분", name: "AVIA"},
+        {price: "1,350원", time: "7분", name: "COOP"},
+        {price: "1,230원", time: "9분", name: "SHELL"},
+      ]
+
+      function initMap() {
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer();
+
+        const stationMark = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+
+        var pos = new google.maps.LatLng(47.3698861287178, 8.541663403564876);
+        var destinations = [
+          { location: new google.maps.LatLng(47.36844175014799, 8.53243724021798), title:"AVIA", idx: 0 },
+          { location: new google.maps.LatLng(47.37576581304848, 8.535183822224413), title:"COOP", idx: 1},
+          { location: new google.maps.LatLng(47.36983688816765, 8.56470957879356), title:"SHELL", idx: 2 }
+        ];
+
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: pos,
+          zoom: 14.5,
+        });
+
+        const infoWindow = new google.maps.InfoWindow();
+        const currentMarker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          title: "Now Location",
+        });
+
+        infoWindow.setContent("I'm here !!");
+        infoWindow.open(map, currentMarker);
+        directionsRenderer.setMap(map);
+
+        destinations.forEach(destination => {
+          createMarker(destination.location, destination.title,  destination.idx, stationMark, pos, gasInfo,);
+        });
+      }
+
+      function createMarker(position, title, idx, img, now_pos, info) {
+        var marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: title,
+          icon: img,
+        });
+
+        const gasWindow = new google.maps.InfoWindow();
+        gasWindow.setContent("가격 : " + info[idx].price + ",    소요 시간 : " + info[idx].time);
+        gasWindow.open(map, marker);
+
+        if (now_pos != null ) {
+          google.maps.event.addListener(marker, "click", function() {
+          calculateAndDisplayRoute(directionsService, directionsRenderer, now_pos, marker.getPosition());
+        });
+        }
+
+        return marker;
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsRenderer, origin, destination) {
+        directionsService.route(
+          {
+            origin: origin,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING,
+          },
+          (response, status) => {
+            if (status === "OK") {
+              directionsRenderer.setDirections(response);
+            } else {
+              console.log(response); // Add this line
+              window.alert("Directions request failed due to " + status);
+            }
+          }
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+{ 
+   "unicast" : "192.168.68.75",
+    "logging" :
+    {
+        "level" : "debug",
+        "console" : "true",
+        "file" : { "enable" : "false" },
+        "dlt" : "false"
+    },
+    "applications" :
+    [
+        {
+           "name" : "service-sample",
+            "id" : "0x1277"
+        }
+    ],
+ 
+            "services" :
+            [
+                {
+                   "service" : "0x1234",
+                   "instance" : "0x5678",
+                   "unreliable" : "30490"
+                }
+            ],
+ 
+   "routing" : "service-sample",
+    "service-discovery" :
+    {
+       "enable" : "true",
+       "multicast" : "224.244.224.243",
+       "port" : "30490",
+       "protocol" : "udp"
+    }
+}  
